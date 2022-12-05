@@ -11,7 +11,7 @@
 
 3. 붕괴 피해가 예상될 경우, APP을 통해 LED와 BUZZER를 ON으로 변화시켜 주민들의 대피를 유도함.(상황 종료시, OFF)
 
-![c](https://user-images.githubusercontent.com/70942492/101444752-815f8b00-3963-11eb-910a-29919af5f08c.png)
+![c](https://user-images.githubusercontent.com/102948959/205660445-cdb04b0b-7d02-4cca-952f-2d40e5cd1ef1.png)
 
 ## 1. Arduino MKR WIFI 1010 관련 Library 설치
 
