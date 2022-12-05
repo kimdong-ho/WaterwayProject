@@ -153,9 +153,9 @@ class Thing {
 >> 다음과 같이 수정 후, [Upload function to AWS Lambda] Click! -> 함수 이름 : SnowDataFunction -> dynamoDB정책에 연결되어있는 IAM 역할 선택 -> Upload!
 
  
- 4. AWS IoT Core -> 동작 -> 규칙 -> 이름 : SnowRule인 규칙 생성 
+ 4. AWS IoT Core -> 동작 -> 규칙 -> 이름 : WaterwayRule인 규칙 생성 
  
- > 규칙 쿼리 설명문 : SELECT *, 'SnowProject' as device FROM '$aws/things/SnowProject/shadow/update/documents' 
+ > 규칙 쿼리 설명문 : SELECT *, 'WaterwayProject' as device FROM '$aws/things/WaterwayProject/shadow/update/documents' 
  
  -> 작업 추가-> 메시지 데이터를 전달하는 Lambda 함수 호출 선택
  
@@ -697,7 +697,7 @@ class Event {
 
 * arduino_secrets.h는 위에서 설명했기때문에 생략
 
-#### 2-1. Arduino_SnowProject.ino
+#### 2-1. Arduino_Waterway.ino
 
 > 1. Weight sensor 관련 library, Led, Buzzer, mkr, wifi 관련 파일들 정의
 
