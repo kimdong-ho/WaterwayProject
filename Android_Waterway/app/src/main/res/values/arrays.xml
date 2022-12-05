@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dong">
+        <item>성북동</item>
+        <item>삼선동</item>
+        <item>안암동</item>
+    </string-array>
+</resources>
