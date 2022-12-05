@@ -693,7 +693,7 @@ class Event {
 
 > Weight Sensor 2 관련 library : HX711_library
 
-### 2. Arduino_SnowProject(Arduino Code)
+### 2. Arduino_WaterwayProject(Arduino Code)
 
 * arduino_secrets.h는 위에서 설명했기때문에 생략
 
@@ -760,3 +760,15 @@ class Event {
 
 >> (LED가 ON이면 led가 켜지도록 코드 작성)
 
+
+### 3. Arduino_Waterway(android studion)
+> 1. Main Activity
+>> 현재 상태 조회 버튼과 로그 조회 버튼 생성, 기상청의 API를 받아 현재 날씨 출력 (미구현)
+
+> 2. Now Activity
+>> 최신의 Weight1, Weight2, LED, Motor 값을 출력, LED와 Motor를 버튼클릭리스너를 통해 제어 (미구현)
+
+> 3. Log Activity
+> > TimePicker를 활용하여 조회시작 날짜 및 시간과 조회종료 날짜 및 시간을 설정하여, 설정한 시간대의 로그 조회
+
+![c](https://user-images.githubusercontent.com/102948959/205662914-55d47f30-fbbe-4a28-82fc-a3a1e1686923.jpg)
