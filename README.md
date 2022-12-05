@@ -771,6 +771,6 @@ class Event {
 > 3. Log Activity
 > > TimePicker를 활용하여 조회시작 날짜 및 시간과 조회종료 날짜 및 시간을 설정하여, 설정한 시간대의 로그 조회
 
-![c](https://user-images.githubusercontent.com/102948959/205662914-55d47f30-fbbe-4a28-82fc-a3a1e1686923.jpg){: width="1000" height="1000"}
-![c](https://user-images.githubusercontent.com/102948959/205663530-7ef2ee56-b52a-495e-981b-0722647fc30b.jpg){: width="1000" height="1000"}
-![c](https://user-images.githubusercontent.com/102948959/205663677-893c30a8-0ae6-4a6d-a15c-de77400964a2.jpg){: width="1000" height="1000"}
+![c](https://user-images.githubusercontent.com/102948959/205662914-55d47f30-fbbe-4a28-82fc-a3a1e1686923.jpg)
+![c](https://user-images.githubusercontent.com/102948959/205663530-7ef2ee56-b52a-495e-981b-0722647fc30b.jpg)
+![c](https://user-images.githubusercontent.com/102948959/205663677-893c30a8-0ae6-4a6d-a15c-de77400964a2.jpg)
