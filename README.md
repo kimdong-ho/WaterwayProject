@@ -5,13 +5,11 @@
 
 ### 주제 : 침수 예방 AWS 배수로
 
-1. 주기적으로 모터를 움직여서 Arduino(MKR WIFI 1010)에 연결된 로드셀 센서를 이용하여 지붕의 무게를 감지해 DynamoDB에 값을 Upload
+1. 주기적으로 모터를 움직여서 Arduino(MKR WIFI 1010)에 연결된 로드셀 센서를 이용하여 쓰레기통의 무게를 감지해 DynamoDB에 값을 업로드 시킴
 
-2. Upload된 값과 기상청 API, 건축물API를 통해 위험도를 예측(추후, 데이터가 쌓여서 위험도 예측 모델을 만들 수 있음.) 
+2. Upload된 값이 일정 값을 초과하면 해당 구역 공무원에게 알람이 전송됨 (이 정보를 기반으로 특정 시간대와 기간이 집계될 수 있음) 
 
-3. 붕괴 피해가 예상될 경우, APP을 통해 LED와 BUZZER를 ON으로 변화시켜 주민들의 대피를 유도함.(상황 종료시, OFF)
-
-![c](https://user-images.githubusercontent.com/102948959/205660445-cdb04b0b-7d02-4cca-952f-2d40e5cd1ef1.png)
+3. 쓰레기 통이 열려있는 동안 낙상사고를 예방하기 위해 주위 사람들에게 경고등 경고음을 출력함 .(닫힐 시, OFF)
 
 ## 1. Arduino MKR WIFI 1010 관련 Library 설치
 
@@ -53,7 +51,7 @@
 
 ## 5. AWS DynamoDB 테이블 만들기 / Lambda함수 정의 / 규칙 정의
 
- 1. 테이블 만들기 -> 테이블 이름 : SnowData / 파티션 키: deviceId(데이터 유형 : 문자열) 
+ 1. 테이블 만들기 -> 테이블 이름 : WaterwayData / 파티션 키: deviceId(데이터 유형 : 문자열) 
  
  2. 정렬 키 추카 선택 -> time 입력(데이터 유형 : 번호 선택)
  
@@ -87,7 +85,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class RecordingDeviceInfoHandler2 implements RequestHandler<Document, String> {
     private DynamoDB dynamoDb;
-    private String DYNAMODB_TABLE_NAME = "SnowData";
+    private String DYNAMODB_TABLE_NAME = "WaterwayData";
 
     @Override
     public String handleRequest(Document input, Context context) {
@@ -159,7 +157,7 @@ class Thing {
  
  -> 작업 추가-> 메시지 데이터를 전달하는 Lambda 함수 호출 선택
  
- > 5-3에서 upload한 SnowDataFunction Lambda함수 선택 
+ > 5-3에서 upload한 WaterwayDataFunction Lambda함수 선택 
  
  -> 작업 추가 -> 규칙 생성 Click!
  
@@ -274,7 +272,7 @@ public class ListingDeviceHandler implements RequestHandler<Object, String> {
 
 >> 1. API 생성 
 
->>> API 유형 : REST API / API 이름 : snow-api 
+>>> API 유형 : REST API / API 이름 : waterway-api 
 
 >> 2. 리소스 아래 /를 선택 -> 작업 드롭다운 메뉴 리소스 생성을 선택 -> 리소스 이름 :  devices 입력 
 
@@ -352,7 +350,7 @@ class Event {
 
 > 2-2. API Gateway 콘솔에서 REST API 생성
 
->> 1. 생성한 snow-api Click! -> 리소스 이름(/devices)을 선택
+>> 1. 생성한 waterway-api Click! -> 리소스 이름(/devices)을 선택
 
 >> 2. 작업 드롭다운 메뉴에서 리소스 생성을 선택 -> 리소스 이름 :  device 입력 -> 리소스 경로(Resource Path)를 {device}로 바꾸기
 
