@@ -167,7 +167,7 @@ void connectMQTT() {
 
   // subscribe to a topic
   // 자신의 aws 사물 이름으로 변경
-  mqttClient.subscribe("$aws/things/MyMKRWiFi1010/shadow/update/delta");
+  mqttClient.subscribe("$aws/things/WaterwayProject/shadow/update/delta");
 }
 
 void getDeviceStatus(char* payload) {
@@ -188,7 +188,7 @@ void getDeviceStatus(char* payload) {
     if(scale.get_units()<0.0){
       w2 *= -1.0;
     }
-    // make payload for the device update topic ($aws/things/SnowProject/shadow/update)
+    // make payload for the device update topic ($aws/things/WaterwayProject/shadow/update)
     sprintf(payload,"{\"state\":{\"reported\":{\"weight1\":\"%0.2f\",\"weight2\":\"%0.2f\",\"LED\":\"%s\","}}}",t1,t2,led);
   }
   
@@ -198,14 +198,14 @@ void getDeviceStatus(char* payload) {
     if(scale.get_units()<0.0){
        t2 *= -1.0;
     }
-    // make payload for the device update topic ($aws/things/SnowProject/shadow/update)
+    // make payload for the device update topic ($aws/things/WaterwayProject/shadow/update)
      sprintf(payload,"{\"state\":{\"reported\":{\"weight1\":\"%0.2f\",\"weight2\":\"%0.2f\",\"LED\":\"%s\",\"BUZZER\":\"%s\"}}}",t1,t2,led,buzzer);
   }
 } 
 
 void sendMessage(char* payload) {
   // 자신의 aws 사물 이름으로 알맞게 변경 필수
-  char TOPIC_NAME[]= "$aws/things/cloudplatformpj/shadow/update";
+  char TOPIC_NAME[]= "$aws/things/WaterwayProject/shadow/update";
   
   Serial.print("Publishing send message:");
   Serial.println(payload);
@@ -253,3 +253,5 @@ void onMessageReceived(int messageSize) {
   }
  
 }
+
+
