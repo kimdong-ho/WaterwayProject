@@ -71,7 +71,7 @@
 
 >> 
 ```javascript
-mport java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
@@ -83,17 +83,17 @@ import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-public class RecordingDeviceInfoHandler2 implements RequestHandler<Document, String> {
+public class WaterwayInfoHandler implements RequestHandler<Document, String> {
     private DynamoDB dynamoDb;
-    private String DYNAMODB_TABLE_NAME = "WaterwayData";
+    private String DYNAMODB_TABLE_NAME = "waterwayData";
 
     @Override
     public String handleRequest(Document input, Context context) {
         this.initDynamoDbClient();
         context.getLogger().log("Input: " + input);
 
-        //return null;
-        return persistData(input);
+        persistData(input);
+        return "Success in storing to DB!";
     }
 
     private String persistData(Document document) throws ConditionalCheckFailedException {
