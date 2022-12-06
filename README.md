@@ -7,7 +7,7 @@
 
 1. 주기적으로 모터를 움직여서 Arduino(MKR WIFI 1010)에 연결된 로드셀 센서를 이용하여 쓰레기통의 무게를 감지해 DynamoDB에 값을 업로드 시킴
 
-2. Upload된 값이 일정 값을 초과하면 해당 구역 공무원에게 알람이 전송됨 (이 정보를 기반으로 특정 시간대와 기간이 집계될 수 있음) 
+2. Upload된 값이 일정 값을 초과하면 해당 구역 공무원에게 알람이 전송됨 (이 정보를 기반으로 특정 시간대와s 기간이 집계될 수 있음) 
 
 3. 쓰레기 통이 열려있는 동안 낙상사고를 예방하기 위해 주위 사람들에게 경고등 경고음을 출력함 .(닫힐 시, OFF)
 
@@ -23,13 +23,13 @@
 
 1. Arduino 파일 -> 예제 -> ArduinoECCX08 -> Tools -> ECCX08CSR Click!
 
-2. Serial Monitor를 연 후, Common Name: 부분에 SnowProject 입력(나머지 질문들은 입력 없이 전송 누르기) Would you like to generate? 에는 Y 입력!
+2. Serial Monitor를 연 후, Common Name: 부분에 WaterwayProject 입력(나머지 질문들은 입력 없이 전송 누르기) Would you like to generate? 에는 Y 입력!
 
 3. 생성된 CSR을 csr.txt 파일로 만들어 Save!
 
 ## 3. AWS IoT Core에서 사물 등록하기
 
-1. 관리 -> 사물 -> 단일 사물 생성 -> 사물 이름은 SnowProject 입력 -> CSR을 통한 생성을 Click -> 2번에서 저장한 csr.txt를 Upload -> 사물 등록
+1. 관리 -> 사물 -> 단일 사물 생성 -> 사물 이름은 WaterwayProject 입력 -> CSR을 통한 생성을 Click -> 2번에서 저장한 csr.txt를 Upload -> 사물 등록
 
 * region은 아시아 태평양(서울) ap-northeast-2로 해줌./ 사물의 정책 AllowEverything(작업 필드 : iot.* 관련) 생성 후 연결해줌.
 
@@ -39,7 +39,7 @@
 
 4. 다운로드 된 인증서 확인
 
-## 4. Arduino_SnowProject/arduino_secrets.h 
+## 4. Arduino_WaterwayProject/arduino_secrets.h 
 
 1. #define SECRET_SSID ""에 자신의 Wifi 이름을 적고, #define SECRET_PASS ""에 Wifi의 비밀번호를 적는다.
 
@@ -148,7 +148,7 @@ class Thing {
 }
 ```
 
->> 다음과 같이 수정 후, [Upload function to AWS Lambda] Click! -> 함수 이름 : SnowDataFunction -> dynamoDB정책에 연결되어있는 IAM 역할 선택 -> Upload!
+>> 다음과 같이 수정 후, [Upload function to AWS Lambda] Click! -> 함수 이름 : WaterwayDataFunction -> dynamoDB정책에 연결되어있는 IAM 역할 선택 -> Upload!
 
  
  4. AWS IoT Core -> 동작 -> 규칙 -> 이름 : WaterwayRule인 규칙 생성 
@@ -482,7 +482,7 @@ class Tag {
 
 > 3-2. API Gateway 콘솔에서 REST API 생성
 
->> 1. 생성한 snow-api Click! -> 리소스 이름(/{device})을 선택
+>> 1. 생성한 waterway-api Click! -> 리소스 이름(/{device})을 선택
 
 >> 2. 리소스 이름 (/{devices}) 아래에 드롭다운 메뉴 -> PUT을 선택 후 확인 표시 아이콘(체크) 선택
 
@@ -649,7 +649,7 @@ class Event {
 
 > 4-2. API Gateway 콘솔에서 REST API 생성
 
->> 1. 생성한 snow-api Click! -> 리소스 이름(/{device})을 선택
+>> 1. 생성한 waterway-api Click! -> 리소스 이름(/{device})을 선택
 
 >> 2. 작업 드롭다운 메뉴에서 리소스 생성을 선택 -> 리소스 이름 :  log 입력 ->  /log – GET – 설정
 
@@ -712,7 +712,7 @@ class Event {
     if(scale.get_units()<0.0){
       t2 *= -1.0;
     }
-    // make payload for the device update topic ($aws/things/SnowProject/shadow/update)
+    // make payload for the device update topic ($aws/things/waterwayProject/shadow/update)
     sprintf(payload,"{\"state\":{\"reported\":{\"weight1\":\"%0.2f\",\"weight2\":\"%0.2f\",\"LED\":\"%s\",\"BUZZER\":\"%s\"}}}",t1,t2,led,buzzer);
   
   else{
@@ -721,7 +721,7 @@ class Event {
     if(scale.get_units()<0.0){
        t2 *= -1.0;
     }
-    // make payload for the device update topic ($aws/things/SnowProject/shadow/update)
+    // make payload for the device update topic ($aws/things/waterwayProject/shadow/update)
      sprintf(payload,"{\"state\":{\"reported\":{\"weight1\":\"%0.2f\",\"weight2\":\"%0.2f\",\"LED\":\"%s\",\"BUZZER\":\"%s\"}}}",t1,t2,led,buzzer);
   }
 ```
